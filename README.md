@@ -6,8 +6,9 @@ Cordova plugin to compress and decompress (__zip__/__unzip__) files and folders 
 __Contributors are welcome.__
 
 Platforms supported
-* __android__
-* __iOS__ (On top of: [SSZipArchive](https://cocoapods.org/pods/SSZipArchive "In case you want to be curious").)
+* __Android__
+* __iOS__ (On top of: [SSZipArchive](https://cocoapods.org/pods/SSZipArchive "In case you want to be curious"))
+* __Electron__ (On top of: [adm-zip](https://www.npmjs.com/package/adm-zip "In case you want to be curious"))
 
 Installation
 ---
@@ -63,5 +64,6 @@ Or To UnZip
 There is a big TODO list, but in resume  
   
 * Write a better documentation
-* Add iOS Support (Partial support, only unzip)
+* Complete iOS Support (Partial support, only unzip)
+* Complete Electron Support (Partial support, only unzip)
 * Should handle some file manipulation (Like remove after zip the file?)
