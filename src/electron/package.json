@@ -1,0 +1,19 @@
+{
+  "name": "jjdltc-cordova-plugin-zip-electron",
+  "version": "1.0.0",
+  "description": "Code that will run in Electron main process context",
+  "main": "index.js",
+  "keywords": [
+    "cordova",
+    "electron",
+    "device",
+    "native"
+  ],
+  "author": "Cimatti Consulting (https://www.cimatti.it/)",
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  },
+  "cordova": {
+    "serviceName": "JJzip"
+  }
+}
