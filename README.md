@@ -13,7 +13,8 @@ Platforms supported
 Installation
 ---
 
-`cordova plugin add cordova-zip-plugin`
+`cordova plugin remove com.jjdltc.cordova.plugin.zip
+cordova plugin add https://github.com/cimatti/jjdltc-cordova-plugin-zip`
 
 Easy Use  
 ---  
