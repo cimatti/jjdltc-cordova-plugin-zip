@@ -1,12 +1,11 @@
 const AdmZip = require('adm-zip');
 const path = require('path');
 
-function url2path(url) {
+function url2path (url) {
     if (url.substr(0, 8) === 'file:///') {
         if (process.platform === 'win32' && (/^file:\/\/\/[a-z]:\//i).test(url)) {
             url = url.substr(8);
-        }
-        else {
+        } else {
             url = url.substr(7);
         }
     }
@@ -14,17 +13,17 @@ function url2path(url) {
 }
 
 module.exports = {
-    zip: function([file, options]) { // eslint-disable-line no-unused-vars
-        return new Promise(function(resolve,reject) {
-            console.log("zip method not yet implemented for Electron");
-            reject({
+    zip: function ([file, options]) {
+        return new Promise(function (resolve, reject) {
+            console.log('zip method not yet implemented for Electron');
+            reject({ // eslint-disable-line prefer-promise-reject-errors
                 success: false,
-                message: "compress Operation fail"
+                message: 'compress Operation fail'
             });
         });
     },
-    unzip: function([file, options]) {
-        return new Promise(function(resolve,reject) {
+    unzip: function ([file, options]) {
+        return new Promise(function (resolve, reject) {
             try {
                 const zipPath = path.resolve(url2path(file));
                 const targetPath = path.resolve(url2path(options.target));
@@ -32,17 +31,16 @@ module.exports = {
                 zip.extractAllTo(targetPath, true);
                 resolve({
                     success: true,
-                    message: "decompress Operation success"
+                    message: 'decompress Operation success'
                 });
-            }
-            catch (e) {
-                console.log("unzip failed");
+            } catch (e) {
+                console.log('unzip failed');
                 console.log(e);
-                reject({
+                reject({ // eslint-disable-line prefer-promise-reject-errors
                     success: false,
-                    message: "decompress Operation fail"
+                    message: 'decompress Operation fail'
                 });
             }
         });
     }
-}
+};

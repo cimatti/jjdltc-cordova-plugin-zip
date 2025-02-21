@@ -1,0 +1,10 @@
+root: true
+
+extends: '@cordova/eslint-config/node'
+
+overrides:
+  - files: [www/**/*.js]
+    extends: '@cordova/eslint-config/browser'
+
+  - files: [src/electron/**/*.js]
+    extends: '@cordova/eslint-config/node'
