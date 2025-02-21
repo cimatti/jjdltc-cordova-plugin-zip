@@ -4,10 +4,20 @@
  * See a full copy of license in the root folder of the project
  */
 
-var argscheck       = require('cordova/argscheck'),
-    exec            = require('cordova/exec');
+var argscheck = require('cordova/argscheck');
+var exec = require('cordova/exec');
 
-function JJzip() { }
+var iOSPathFix = function (path) {
+    if (window.CDV_ASSETS_URL) {
+        const pathstart = window.CDV_ASSETS_URL + '/_app_file_';
+        if (path.startsWith(pathstart)) {
+            return 'file://' + path.substring(pathstart.length);
+        }
+    }
+    return path;
+};
+
+function JJzip () { }
 
 /**
  *
@@ -15,14 +25,18 @@ function JJzip() { }
  * @param {String} Object with options of the action like
  * {
  *      target  : "Path/to/place/result/file"
- *      , name  : if set, put the result this name, otherwise put the source file name  
+ *      , name  : if set, put the result this name, otherwise put the source file name
  * }
  * @param {Function} successCallback The function to call when the heading data is available
  * @param {Function} errorCallback The function to call when there is an error getting the heading data. (OPTIONAL)
  */
-JJzip.prototype.zip = function(file, options, successCallback, errorCallback) {
+JJzip.prototype.zip = function (file, options, successCallback, errorCallback) {
     argscheck.checkArgs('sOFF', 'JJzip.zip', arguments);
-    exec(successCallback, errorCallback, "JJzip", "zip", [file, options]);
+    file = iOSPathFix(file);
+    if (options && options.target) {
+        options.target = iOSPathFix(options.target);
+    }
+    exec(successCallback, errorCallback, 'JJzip', 'zip', [file, options]);
 };
 
 /**
@@ -31,14 +45,18 @@ JJzip.prototype.zip = function(file, options, successCallback, errorCallback) {
  * @param {String} Object with options of the action like
  * {
  *      target  : "Path/to/place/result/file"
- *      , name  : if set, put the result this name, otherwise put the source file name  
+ *      , name  : if set, put the result this name, otherwise put the source file name
  * }
  * @param {Function} successCallback The function to call when the heading data is available
  * @param {Function} errorCallback The function to call when there is an error getting the heading data. (OPTIONAL)
  */
-JJzip.prototype.unzip = function(file, options, successCallback, errorCallback) {
+JJzip.prototype.unzip = function (file, options, successCallback, errorCallback) {
     argscheck.checkArgs('sOFF', 'JJzip.unzip', arguments);
-    exec(successCallback, errorCallback, "JJzip", "unzip", [file, options]);
+    file = iOSPathFix(file);
+    if (options && options.target) {
+        options.target = iOSPathFix(options.target);
+    }
+    exec(successCallback, errorCallback, 'JJzip', 'unzip', [file, options]);
 };
 
 module.exports = new JJzip();

@@ -24,7 +24,8 @@
     "decompress"
   ],
   "scripts": {
-    "jslint": "eslint ./www/"
+    "lint": "eslint .",
+    "jslint": "eslint ."
   },
   "engines": {
     "cordovaDependencies": {
@@ -45,6 +46,7 @@
   },
   "homepage": "https://github.com/jjdltc/jjdltc-cordova-plugin-zip#readme",
   "devDependencies": {
+    "@cordova/eslint-config": "^5.1.0",
     "husky": "^4.2.5"
   },
   "husky": {
